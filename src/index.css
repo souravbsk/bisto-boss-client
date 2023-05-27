@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body{
+    font-family: 'Inter', sans-serif;
+}
+.carousel .thumbs-wrapper{
+    @apply flex items-center justify-center
+}
+
+
+
+
+.homeBanner{
+    background-image: url("./assets/home/chef-service.jpg");
+}
+.st{
+    @apply mt-24
+}
+.container{
+    @apply max-w-screen-xl mx-auto
+}
