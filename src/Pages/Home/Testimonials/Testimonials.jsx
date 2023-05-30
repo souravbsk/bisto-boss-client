@@ -16,7 +16,7 @@ const Testimonials = () => {
         setReviews(data);
       });
   }, []);
-  console.log(reviews);
+  // console.log(reviews);
   return (
     <div className="st container">
       <SectionTitle
@@ -24,8 +24,8 @@ const Testimonials = () => {
         headingTitle="TESTIMONIALS"
       ></SectionTitle>
       <Swiper navigation={true} loop={true} modules={[Navigation]} className="mySwiper">
-        {reviews.map((review) => (
-          <SwiperSlide key={review._id}>
+        {reviews.map((review,i) => (
+          <SwiperSlide key={i}>
             <div className="mx-24  flex flex-col items-center justify-center">
               <Rating
                 style={{ maxWidth: 100 }}

@@ -1,8 +1,54 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
+import useCart from "../../Hooks/useCart";
 
 const FoodCard = ({ item }) => {
-  const { name, image,_id, price, recipe } = item;
+  const { user } = useContext(AuthContext);
+  const { name, image, _id, price, recipe } = item;
+  const [cart,refetch] = useCart();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleAddToCart = (item) => {
+    if (user && user.email) {
+      const orderItem = {menuItemId: _id, name, image,price,email: user.email}
+      fetch("http://localhost:5000/carts", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(orderItem),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            refetch(); // ontime refecth
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Food Added on the Cart",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "please login to order the food",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login Now",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login",{state:{from:location}});
+        }
+      });
+    }
+  };
 
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
@@ -16,11 +62,12 @@ const FoodCard = ({ item }) => {
         <h2 className="card-title">{name} </h2>
         <p>{recipe}</p>
         <div className="card-actions justify-center">
-          <Link to={`/order/${_id}`}>
-            <button className="btn btn-outline border-0 text-black border-black border-b-2">
-              Order Now
-            </button>
-          </Link>
+          <button
+            onClick={() => handleAddToCart(item)}
+            className="btn btn-outline border-0 text-black border-black border-b-2"
+          >
+            Order Now
+          </button>
         </div>
       </div>
     </div>

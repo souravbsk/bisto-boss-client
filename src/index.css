@@ -22,3 +22,11 @@ body{
 .container{
     @apply max-w-screen-xl mx-auto
 }
+
+
+.drawer-side a.active {
+color: white;
+}
+.drawer-side a {
+    background-color: transparent;
+}

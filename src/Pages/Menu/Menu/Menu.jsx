@@ -10,6 +10,7 @@ import dessertImg from "../../../assets/menu/dessert-bg.jpeg"
 import pizzaImg from "../../../assets/menu/pizza-bg.jpg"
 import saladImg from "../../../assets/menu/salad-bg.jpg"
 import soupImg from "../../../assets/menu/soup-bg.jpg"
+import HeaderCover from "../../../Components/HeaderCover/HeaderCover";
 const Menu = () => {
   const [menus] = useMenu();
   const dessert = menus.filter((item) => item.category === "dessert");
@@ -17,17 +18,17 @@ const Menu = () => {
   const salad = menus.filter((item) => item.category === "salad");
   const pizza = menus.filter((item) => item.category === "pizza");
   const offered = menus.filter((item) => item.category === "offered");
-  console.log(dessert);
+  // console.log(dessert);
   return (
     <div>
       <Helmet>
         <title>Bistro Boss | Menus</title>
       </Helmet>
-      <Cover
-        img={img}
+
+      <HeaderCover  img={img}
         title="OUR MENU"
-        pera="Would you like to try a dish?"
-      ></Cover>
+        pera="Would you like to try a dish?"></HeaderCover>
+
       {/* main cover  */}
       <SectionTitle
         subTitle="Don't Miss"
