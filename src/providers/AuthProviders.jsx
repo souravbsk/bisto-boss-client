@@ -32,23 +32,27 @@ const AuthProviders = ({ children }) => {
   };
 
   const logOut = () => {
-    setLoading(true);
     return signOut(auth);
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // console.log(currentUser);
-      if (currentUser) {
+      // // console.log(currentUser);
+      if (currentUser && currentUser?.email) {
         axios
           .post("http://localhost:5000/jwt", { email: currentUser?.email })
           .then((data) => {
             localStorage.setItem("bistroBoosToken", data.data.token);
             setLoading(false);
+          })
+          .catch((err) => {
+            // console.log(err.message);
+            setLoading(false);
           });
       } else {
         localStorage.removeItem("bistroBoosToken");
+        setLoading(false);
       }
       // setLoading(false);
     });
@@ -56,9 +60,10 @@ const AuthProviders = ({ children }) => {
       unsubscribe();
     };
   }, []);
-  // console.log(user);
+  // // console.log(user);
 
   const updateUserProfile = (name, photo) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,

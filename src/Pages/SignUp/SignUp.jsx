@@ -20,7 +20,7 @@ const SignUp = () => {
     createUser(data.email, data.password)
       .then((res) => {
         const loggedUser = res.user;
-        // console.log(loggedUser);
+        // // console.log(loggedUser);
         updateUserProfile(data.name, data.photo)
           .then(() => {
             const savedUser = { name: data.name, email: data.email };
@@ -47,14 +47,14 @@ const SignUp = () => {
               });
           })
           .catch((err) => {
-            // console.log(err.message);
+            // // console.log(err.message);
           });
       })
       .catch((err) => {
-        // console.log(err.message);
+        // // console.log(err.message);
       });
   };
-  // console.log(watch("example"));
+  // // console.log(watch("example"));
 
   return (
     <>

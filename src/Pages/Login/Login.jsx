@@ -42,9 +42,9 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((err) => {
-        // console.log(err.message);
+        // // console.log(err.message);
       });
-    // console.log(email, password);
+    // // console.log(email, password);
   };
 
   const handleValidity = (e) => {

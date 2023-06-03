@@ -10,6 +10,10 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layouts/Dashboard";
 import MyCard from "../Pages/Dashboard/MyCard/MyCard";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AddItem from "../Pages/Dashboard/AddItem/AddItem";
+import AdminRoute from "./AdminRoute";
+import ManageItem from "../Pages/Dashboard/ManageItem/ManageItem";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -59,9 +63,30 @@ const router = createBrowserRouter([
         element: <MyCard></MyCard>,
       },
       {
-        path: "allusers",
-        element: <AllUsers></AllUsers>,
+        path:"payment",
+        element:<Payment></Payment>
       },
+      {
+        path: "allusers",
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
+      },
+      {
+        path: "additem",
+        element: (
+          <AdminRoute>
+            <AddItem></AddItem>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manageitems",
+        element: (
+          <AdminRoute>
+            <ManageItem></ManageItem>
+          </AdminRoute>
+        ),
+      },
+     
     ],
   },
 ]);

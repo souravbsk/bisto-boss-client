@@ -30,3 +30,8 @@ color: white;
 .drawer-side a {
     background-color: transparent;
 }
+
+
+.user-btn{
+    @apply btn flex items-center border-0 uppercase rounded-none px-8 gap-2 bg-gradient-to-r from-[#896125] to-[#B17E2F]
+}

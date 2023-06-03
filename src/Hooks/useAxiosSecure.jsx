@@ -4,19 +4,19 @@ import { useNavigate } from 'react-router-dom';
 
 import useAuth from './useAuth';
 
-
+const axiosSecure = axios.create({
+  baseURL: 'http://localhost:5000', 
+});
 const useAxiosSecure = () => {
   const { logOut } = useAuth()
   const navigate = useNavigate(); 
 
-  const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000', 
-  });
+
 
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
       const token = localStorage.getItem('bistroBoosToken');
-      console.log("token",token);
+      // console.log("token",token);
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
@@ -28,12 +28,12 @@ const useAxiosSecure = () => {
       async (error) => {
         if (error.response && (error.response.status === 401 || error.response.status === 403)) {
           await logOut()
-          navigate('/login');
+          // navigate('/login');
         }
         return Promise.reject(error);
       }
     );
-  }, [logOut, navigate, axiosSecure]);
+  }, [logOut, navigate]);
 
   return [axiosSecure];
 };

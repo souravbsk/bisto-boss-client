@@ -16,7 +16,7 @@ const Testimonials = () => {
         setReviews(data);
       });
   }, []);
-  // console.log(reviews);
+  // // console.log(reviews);
   return (
     <div className="st container">
       <SectionTitle

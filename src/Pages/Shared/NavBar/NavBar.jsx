@@ -4,18 +4,15 @@ import { AuthContext } from "../../../providers/AuthProviders";
 import useCart from "../../../Hooks/useCart";
 
 const NavBar = () => {
-  const { logOut, user } = useContext(AuthContext);
-  const [cart,isLoading] = useCart();
-  // if(!isLoading){
-  //   return <p>Loadgin</p>
-  // }
- 
+  const { logOut, user,loading } = useContext(AuthContext);
+  const [cart] = useCart();
+  // console.log(loading);
   
   const handleLogOut = () => {
     logOut()
       .then(() => {})
       .catch((err) => {
-        // console.log(err.message);
+        // // console.log(err.message);
       });
   };
 
@@ -31,7 +28,7 @@ const NavBar = () => {
         <Link to="/order/salad">Order Food</Link>
       </li>
       <li>
-        <Link to="/dashboard">
+        <Link to="/dashboard/mycart">
           <div className="indicator">
             <svg
               xmlns="http://www.w3.org/2000/svg"

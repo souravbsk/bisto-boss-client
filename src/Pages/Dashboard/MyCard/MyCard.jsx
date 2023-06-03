@@ -2,10 +2,12 @@ import React from "react";
 import useCart from "../../../Hooks/useCart";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
-const MyCard = () => {
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import { Link } from "react-router-dom";
+const  MyCard = () => {
   const [cart,refetch] = useCart();
+  // // console.log(cart);
   // console.log(cart);
-  console.log(cart);
   const totalPrice = cart?.reduce((sum, item) => item.price + sum, 0) || 0;
 
   const handleDelete = (id) => {
@@ -24,7 +26,7 @@ const MyCard = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            // console.log(data);
+            // // console.log(data);
             if (data.deletedCount > 0) {
                 refetch()
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
@@ -34,11 +36,12 @@ const MyCard = () => {
     });
   };
   return (
-    <div className="p-12 bg-white">
+    <div className="py-12 bg-white">
+      <SectionTitle subTitle="My Cart" headingTitle="WANNA ADD MORE?"></SectionTitle>
       <div className="uppercase flex items-center mb-5 justify-between">
         <h2 className="text-xl font-semibold">Total orders: {cart.length}</h2>
         <h2 className="text-xl font-semibold">Total price: ${totalPrice}</h2>
-        <button className="btn btn-sm btn-warning">Pay</button>
+        <Link to="/dashboard/payment"><button className="btn btn-sm btn-warning">Pay</button></Link>
       </div>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">

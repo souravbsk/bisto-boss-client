@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 // import brandLogo  from "../assets/"
 import {
   FaBook,
@@ -18,18 +18,20 @@ import { GrMail } from "react-icons/gr";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../Hooks/useCart";
 import useAdmin from "../Hooks/useAdmin";
+import { AuthContext } from "../providers/AuthProviders";
 
 const Dashboard = () => {
   const [cart] = useCart();
+
   //TODO: load data from the server to have dynamic isAdmin based on Data
   // const isAdmin = true;
 
-  const [isAdmin,isAdminLoading] = useAdmin();
+  const [isAdmin, isAdminLoading] = useAdmin();
 
   return (
     <div className="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col px-40 justify-center">
+      <div className="drawer-content   flex-col px-3 md:px-24 ">
         <Outlet></Outlet>
         <label
           htmlFor="my-drawer-2"
@@ -41,7 +43,7 @@ const Dashboard = () => {
       <div className="drawer-side  ">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
-        <ul className="menu bg-[#D1A054]  p-4 w-80  text-base-content">
+        <ul className="menu bg-[#D1A054]  p-4 w-80 max-w-80  text-base-content">
           {isAdmin ? (
             <>
               <li>
