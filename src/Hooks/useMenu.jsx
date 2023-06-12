@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const useMenu = () => {
   // const [menus, setMenus] = useState([]);
   // useEffect(() => {
-  //   fetch("http://localhost:5000/menu")
+  //   fetch("https://bistro-boss-server-souravbsk.vercel.app/menu")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setMenus(data);
@@ -14,7 +14,7 @@ const useMenu = () => {
   const {data:menus = [], isLoading:loading, refetch} = useQuery({
     queryKey:["menu"],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/menu')
+      const res = await fetch('https://bistro-boss-server-souravbsk.vercel.app/menu')
      
       return res.json();
 

@@ -58,7 +58,7 @@ const ManageItem = () => {
             </thead>
             <tbody>
               {menus?.map((item, i) => (
-                <tr>
+                <tr key={item._id}>
                   <th>{i + 1}</th>
                   <td>
                     <div className="flex items-center space-x-3">

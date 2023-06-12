@@ -21,7 +21,7 @@ const  MyCard = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/carts/${id}`, {
+        fetch(`https://bistro-boss-server-souravbsk.vercel.app/carts/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -36,7 +36,7 @@ const  MyCard = () => {
     });
   };
   return (
-    <div className="py-12 bg-white">
+    <div className="py-12">
       <SectionTitle subTitle="My Cart" headingTitle="WANNA ADD MORE?"></SectionTitle>
       <div className="uppercase flex items-center mb-5 justify-between">
         <h2 className="text-xl font-semibold">Total orders: {cart.length}</h2>

@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import signUpImg from "../../assets/login/login.png"
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -24,7 +25,7 @@ const SignUp = () => {
         updateUserProfile(data.name, data.photo)
           .then(() => {
             const savedUser = { name: data.name, email: data.email };
-            fetch("http://localhost:5000/users", {
+            fetch("https://bistro-boss-server-souravbsk.vercel.app/users", {
               method: "POST",
               headers: {
                 "content-type": "application/json",
@@ -62,17 +63,15 @@ const SignUp = () => {
         <title>Bistro Boss || Sign Up</title>
       </Helmet>
       <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Sign Up</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+        <div className="hero-content flex-col lg:flex-row">
+          <div className="text-center w-1/2 lg:text-left">
+           <figure>
+            <img src={signUpImg} alt="" />
+           </figure>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card w-1/2 shadow-2xl bg-base-100">
             <div className="card-body">
+            <h1 className="text-3xl text-center font-bold">Sign Up</h1>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">
                   <label className="label">
@@ -148,14 +147,9 @@ const SignUp = () => {
                       number and one special character.
                     </p>
                   )}
-                  <label className="label">
-                    <a href="#" className="label-text-alt link link-hover">
-                      Forgot password?
-                    </a>
-                  </label>
                 </div>
                 <div className="form-control mt-6">
-                  <input className="btn btn-primary" type="submit" />
+                  <input className="btn bg-[#D1A054] btn-primary" type="submit" />
                 </div>
               </form>
               <p>

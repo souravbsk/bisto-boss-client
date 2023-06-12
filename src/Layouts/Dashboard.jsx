@@ -31,7 +31,7 @@ const Dashboard = () => {
   return (
     <div className="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content   flex-col px-3 md:px-24 ">
+      <div className="drawer-content   flex-col px-3 md:px-20 ">
         <Outlet></Outlet>
         <label
           htmlFor="my-drawer-2"
@@ -44,11 +44,25 @@ const Dashboard = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
         <ul className="menu bg-[#D1A054]  p-4 w-80 max-w-80  text-base-content">
+          <li className="py-5">
+            <NavLink to="/">
+              {" "}
+              <h2
+                className="text-2xl text-center md:text-4xl font-bold font-serif
+            "
+              >
+                Bistro Boss
+              </h2>
+            </NavLink>
+            <p className="tracking-widest -mt-2 text-center bg-none text-2xl font-mono">
+              Restaurant
+            </p>
+          </li>
           {isAdmin ? (
             <>
               <li>
-                <NavLink to="/">
-                  <FaHome></FaHome> User Home
+                <NavLink to="/dashboard/adminhome">
+                  <FaHome></FaHome> Admin Home
                 </NavLink>
               </li>
               <li>
@@ -76,7 +90,7 @@ const Dashboard = () => {
           ) : (
             <>
               <li>
-                <NavLink to="/">
+                <NavLink to="/dashboard/userhome">
                   <FaHome></FaHome> User Home
                 </NavLink>
               </li>

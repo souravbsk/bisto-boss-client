@@ -10,6 +10,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+
+
+import loginImg from "../../assets/login/login.png"
+
 const Login = () => {
   const [isdisebaled, setDisebaled] = useState(true);
   const navigate = useNavigate();
@@ -65,15 +69,13 @@ const Login = () => {
         <div className="hero min-h-screen bg-base-200">
           <div className="hero-content flex-col lg:flex-row">
             <div className="text-center w-1/2 lg:text-left">
-              <h1 className="text-5xl font-bold">Login now!</h1>
-              <p className="py-6">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                assumenda excepturi exercitationem quasi. In deleniti eaque aut
-                repudiandae et a id nisi.
-              </p>
-            </div>
+              <figure>
+                <img className="w-full" src={loginImg} alt="" />
+                </figure>         
+                   </div>
             <div className="card w-1/2 shadow-2xl bg-base-100">
               <div className="card-body">
+              <h1 className="text-4xl text-center font-bold">Login now!</h1>
                 <form onSubmit={handleLogin}>
                   <div className="form-control">
                     <label className="label">
@@ -114,7 +116,7 @@ const Login = () => {
                     />
                   </div>
                   <div className="form-control mt-6">
-                    <button disabled={false} className="btn btn-primary">
+                    <button disabled={false} className="btn bg-[#D1A054] btn-primary">
                       Login
                     </button>
                   </div>

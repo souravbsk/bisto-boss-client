@@ -7,14 +7,20 @@ import useCart from "../../Hooks/useCart";
 const FoodCard = ({ item }) => {
   const { user } = useContext(AuthContext);
   const { name, image, _id, price, recipe } = item;
-  const [cart,refetch] = useCart();
+  const [cart, refetch] = useCart();
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleAddToCart = (item) => {
     if (user && user.email) {
-      const orderItem = {menuItemId: _id, name, image,price,email: user.email}
-      fetch("http://localhost:5000/carts", {
+      const orderItem = {
+        menuItemId: _id,
+        name,
+        image,
+        price,
+        email: user.email,
+      };
+      fetch("https://bistro-boss-server-souravbsk.vercel.app/carts", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -44,22 +50,21 @@ const FoodCard = ({ item }) => {
         confirmButtonText: "Login Now",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/login",{state:{from:location}});
+          navigate("/login", { state: { from: location } });
         }
       });
     }
   };
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
-      <figure>
-        <img src={image} alt="Shoes" />
-        <p className="bg-slate-900 top-0 mt-4 right-0 mr-4 px-4 text-white absolute">
-          {price}
-        </p>
-      </figure>
-      <div className="card-body text-center">
-        <h2 className="card-title">{name} </h2>
+    <div className="card border overflow-hidden bg-base-200">
+      <img src={image} alt="Shoes" />
+      <p className="bg-slate-900 top-0 mt-4 right-0 mr-4 px-4 text-white absolute">
+        {price}
+      </p>
+
+      <div className="card-body">
+        <h2 className="card-title justify-center">{name} </h2>
         <p>{recipe}</p>
         <div className="card-actions justify-center">
           <button

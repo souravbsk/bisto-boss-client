@@ -4,11 +4,13 @@ import { Helmet } from "react-helmet-async";
 import { FaTrashAlt, FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 
 const AllUsers = () => {
   const [axiosSecure] = useAxiosSecure();
   const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await axiosSecure.get("/users");
+    console.log(res);
     return res.data;
   });
 
@@ -31,7 +33,7 @@ const AllUsers = () => {
       });
   };
   const handleRemoveUser = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
+    fetch(`https://bistro-boss-server-souravbsk.vercel.app/users/admin/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -49,11 +51,16 @@ const AllUsers = () => {
       });
   };
   return (
-    <div>
+    <div className="py-12">
       <Helmet>
         <title>Bistro Boss || All Users</title>
       </Helmet>
-      <h2 className="uppercase text-2xl font-semibold">
+
+      <SectionTitle
+        subTitle="How many??"
+        headingTitle="MANAGE ALL USERS"
+      ></SectionTitle>
+      <h2 className="uppercase mb-5 text-2xl font-semibold">
         Total Users: {users.length}
       </h2>
       <div className="overflow-x-auto">

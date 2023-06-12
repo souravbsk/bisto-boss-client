@@ -35,3 +35,8 @@ color: white;
 .user-btn{
     @apply btn flex items-center border-0 uppercase rounded-none px-8 gap-2 bg-gradient-to-r from-[#896125] to-[#B17E2F]
 }
+
+.react-tabs__tab--selected{
+    text-decoration: underline;
+    text-decoration-color:orange ;
+}

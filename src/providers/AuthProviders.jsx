@@ -41,7 +41,7 @@ const AuthProviders = ({ children }) => {
       // // console.log(currentUser);
       if (currentUser && currentUser?.email) {
         axios
-          .post("http://localhost:5000/jwt", { email: currentUser?.email })
+          .post("https://bistro-boss-server-souravbsk.vercel.app/jwt", { email: currentUser?.email })
           .then((data) => {
             localStorage.setItem("bistroBoosToken", data.data.token);
             setLoading(false);
